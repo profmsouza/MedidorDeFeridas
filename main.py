@@ -7,7 +7,7 @@ app = FastAPI()
 
 @app.post("/")
 async def hello():
-    return {"Welcome": "The API is online!}
+    return {"Welcome": "The API is online!"}
     
 @app.post("/area")
 async def area(image_path: str):
