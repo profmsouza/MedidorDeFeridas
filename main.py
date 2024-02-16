@@ -5,11 +5,11 @@ import requests
 
 app = FastAPI()
 
-@app.post("/")
+@app.get("/")
 async def hello():
     return {"Welcome": "The API is online!"}
     
-@app.post("/area")
+@app.get("/area")
 async def area(image_path: str):
     try:
         # Leitura da imagem do arquivo carregado
