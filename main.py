@@ -1,14 +1,19 @@
 import cv2
 import numpy as np
 from fastapi import FastAPI, File, UploadFile
+import requests
 
 app = FastAPI()
 
 @app.post("/area")
-async def area(file: UploadFile = File(...)):
+async def area(str: image_path):
     try:
         # Leitura da imagem do arquivo carregado
-        image = cv2.imdecode(np.fromstring(await file.read(), np.uint8), cv2.IMREAD_COLOR)
+        resposta = requests.get(image_path)
+        conteudo_imagem = resposta.content
+        imagem_np = np.frombuffer(conteudo_imagem, np.uint8)
+        image = cv2.imdecode(imagem_np, cv2.IMREAD_COLOR)
+        #image = cv2.imdecode(np.fromstring(await file.read(), np.uint8), cv2.IMREAD_COLOR)
 
         # Conversão de BGR para HSV
         hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
