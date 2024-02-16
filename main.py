@@ -6,7 +6,7 @@ import requests
 app = FastAPI()
 
 @app.post("/area")
-async def area(str: image_path):
+async def area(image_path: str):
     try:
         # Leitura da imagem do arquivo carregado
         resposta = requests.get(image_path)
