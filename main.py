@@ -58,7 +58,7 @@ async def area(image_path: str):
         # Conversão da área vermelha de pixels para cm² usando a escala do quadrado verde
         red_area_cm2 = red_area_pixels * green_scale_cm2
 
-        return {"area": red_area_cm2}
+        return {"area": round(red_area_cm2,2)}
 
     except Exception as e:
         return {"error": str(e)}
